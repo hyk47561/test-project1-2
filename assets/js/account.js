@@ -11,6 +11,8 @@ var config = {
 
 firebase.initializeApp(config);
 
+var redirectUrl = "index.html";
+var authResult = "index.html";
 
 var provider = new firebase.auth.GoogleAuthProvider();
 firebase.auth().getRedirectResult().then(function(result) {
@@ -36,13 +38,15 @@ var uiConfig = {
          requireDisplayName: true
           },
         
-        firebaseui.auth.AnonymousAuthProvider.PROVIDER_ID
+        {provider: firebaseui.auth.AnonymousAuthProvider.PROVIDER_ID
+          },  
     ],
-
-    tosUrl: '<your-tos-url>',
+   
+    
+    tosUrl: 'index.html',
 
     privacyPolicyUrl: function () {
-        window.location.assign('<your-privacy-policy-url>');
+        window.location.assign('index.html');
     }
 };
 
@@ -73,71 +77,35 @@ ui.start('#firebaseui-auth-container', {
 
         
 
-            emailLinkSignIn: function () {
-                return {
+            emailLinkSignIn: {
 
-                    url: 'https://www.example.com/completeSignIn?showPromo=1234',
+              url: 'index.html',
 
-                    dynamicLinkDomain: 'example.page.link',
+              dynamicLinkDomain: 'index.html',
 
-                    handleCodeInApp: true,
+              handleCodeInApp: true,
 
-                    iOS: {
-                        bundleId: 'com.example.ios'
-                    },
+              iOS: {
+                  bundleId: 'com.example.ios'
+              },
 
-                    android: {
-                        packageName: 'com.example.android',
-                        installApp: true,
-                        minimumVersion: '12'
-                    }
-                };
-            
-            }
+              android: {
+                  packageName: 'com.example.android',
+                  installApp: true,
+                  minimumVersion: '12'
+              }
+          }
         },
         { provider: firebaseui.auth.AnonymousAuthProvider.PROVIDER_ID }
     ],
     credentialHelper: firebaseui.auth.CredentialHelper.GOOGLE_YOLO
 });
 
-anonymousUser.linkWithCredential(permanentCredential);
+// anonymousUser.linkWithCredential(permanentCredential);
 
-var data = null;
-var anonymousUser = firebase.auth().currentUser;
-ui.start('#firebaseui-auth-container', {
-  autoUpgradeAnonymousUsers: true,
-  signInSuccessUrl: 'index.html',
-  signInOptions: [
-    firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-    firebase.auth.EmailAuthProvider.PROVIDER_ID,
-  ],
-  callbacks: {
-    signInSuccessWithAuthResult: function(authResult, redirectUrl) {
-      return true;
-    },
-    signInFailure: function(error) {
-      if (error.code != 'firebaseui/anonymous-upgrade-merge-conflict') {
-        return Promise.resolve();
-      }
-      var cred = error.credential;
-      var app = firebase.app();
-      return app.database().ref('users/' + firebase.auth().currentUser.uid)
-          .once('value')
-          .then(function(snapshot) {
-            data = snapshot.val();
-            return firebase.auth().signInWithCredential(cred);
-          })
-          .then(function(user) {
-            return app.database().ref('users/' + user.uid).set(data);
-          })
-          .then(function() {
-            return anonymousUser.delete();
-          }).then(function() {
-            data = null;
-            window.location.assign('index.html');
-          });
-
-    }
+firebase.auth().onAuthStateChanged(user => {
+  if(user) {
+    window.location = 'index.html'; //After successful login, user will be redirected to home.html
   }
 });
 
@@ -156,6 +124,12 @@ var user = firebase.auth().currentUser;
   } else {
     // No user is signed in.
   }
+
+  firebase.auth().signOut().then(function() {
+    // Sign-out successful.
+  }).catch(function(error) {
+    // An error happened.
+  });
 
   var user = firebase.auth().currentUser;
   var name, email, uid, emailVerified;
@@ -178,22 +152,5 @@ if (user != null) {
   });
 }
 
-var user = firebase.auth().currentUser;
-
-user.sendEmailVerification().then(function() {
-  // Email sent.
-}).catch(function(error) {
-  // An error happened.
-});
-var user = firebase.auth().currentUser;
-var newPassword = getASecureRandomPassword();
-
-user.updatePassword(newPassword).then(function() {
-  // Update successful.
-}).catch(function(error) {
-  // An error happened.
-});
-
-
-
 ui.disableAutoSignIn();
+
