@@ -1,0 +1,252 @@
+body {
+    background: whitesmoke;
+}
+
+header {
+    padding: 20px;
+
+    position: fixed;
+    top: 0;
+    width: 100%;
+
+    background: gray;
+    border-bottom: 2px darkgray solid;
+}
+
+
+/* Style by id */
+#main-search-area {
+    margin-top: 15%;
+    margin-left: auto;
+    margin-right: auto;
+
+    padding-top: 5%;
+    padding-bottom: 5%;
+
+    height: 200px;
+    width: 100%;
+
+    align-content: center;
+    text-align: center;
+
+    background: gray;
+    opacity: 50%;
+    border-top: 2px darkgray solid;
+    border-bottom: 2px darkgray solid;
+}
+
+#main-logo {
+    margin-left: auto; 
+    margin-right: auto;
+    margin-bottom: 30px;
+
+    font-size: 48px;
+}
+
+#main-search-bar {
+    margin-bottom: 20px;
+
+    padding-top:auto;
+    padding-left: 40px;
+    padding-bottom: 2px;
+
+    height: 40px;
+    width: 40%;
+
+    border-radius: 25px;
+
+    font-size: 20px;
+    outline: none;
+}
+
+#main-add-btn {
+    height: 30px;
+    width: 75px;
+
+    border-radius: 15px;
+
+    font-size: 15px;
+    outline: none;
+}
+
+#main-search-btn {
+    height: 30px;
+    width: 75px;
+
+    border-radius: 15px;
+
+    font-size: 15px;
+    outline: none;
+}
+
+#ingredients-list-area {
+    margin-top: 50px;
+    margin-right: auto;
+    margin-left: auto;
+
+    align-content: center;
+    width: 30%;
+}
+
+#header-logo {
+    display: inline;
+
+    font-size: 30px;
+}
+
+#header-logo:hover{
+    cursor: pointer;
+}
+
+#header-search-area {
+    margin-left: 100px;
+    display: inline;
+    outline: none;
+}
+
+#header-dropdown-btn {
+    height: 30px;
+    width: 30px;
+
+    border-radius: 20px;
+    outline: none;
+}
+
+#header-search-bar {
+    margin-right: 20px;
+
+    padding-left: 30px;
+
+    height: 30px;
+    width: 400px;
+
+    border-radius: 20px;
+    outline: none;
+}
+
+#header-add-btn {
+    height: 30px;
+
+    border-radius: 20px;
+    outline: none;
+}
+
+#header-search-btn {
+    height: 30px;
+
+    border-radius: 20px;
+    outline: none;
+}
+
+#results {
+    margin-top: 80px;
+    margin-left: auto;
+    margin-right: auto;
+
+    padding-left: 20px;
+    padding-right: 20px;
+
+    height: auto;
+    width: 60%;
+
+    background: white;
+}
+
+#main-header {
+    background: none;
+    border: none;
+    align-content: right;
+}
+
+#login-btn {
+    margin-right: 50px;
+    background: none;
+    border: none;
+    outline: none;
+    position: absolute;
+    right: 0;
+    margin-left: auto;
+
+
+}
+
+#header-ingredients-area {
+    max-height: 0px;
+    overflow: hidden;
+    transition: max-height 0.5s ease-out;
+}
+
+#firebaseui-auth-container {
+    margin-top: 20%;
+    margin-bottom: auto;
+}
+
+/* Style by class */
+.search-result {
+    margin-left: auto;
+    margin-right: auto;
+
+    padding-top: 10px;
+    padding-bottom: 12px;
+
+    min-height: 200px;
+    height: auto;
+
+    border-bottom: 1px darkgray solid;
+}
+
+.result-img {
+    margin-right: 20px;
+
+    height: 200px;
+    width: 200px;
+
+    float: left;
+}
+
+.result-preview {
+    top: 0;
+    margin-top: 0;
+    margin-bottom: auto;
+
+    text-align: left;
+}
+
+.result-title {
+    font-size: 36px;
+
+    display: inline;
+}
+
+.result-preptime {
+    font-size: 24px;
+    color: gray;
+
+    display: inline;
+}
+
+.result-warnings {
+    margin-top: 10px;
+    font-size: 24px;
+}
+
+
+
+.result-description {
+    margin-top: 15px;
+    font-size: 18px;
+}
+
+.result-details {
+    margin-top: 20px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-out;
+}
+
+.ingredient {
+    height: 30px;
+
+    border-radius: 20px;
+    outline: none;
+}
